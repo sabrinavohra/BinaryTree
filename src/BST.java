@@ -136,7 +136,26 @@ public class BST {
      */
     public void insert(int val) {
         // TODO: Complete insert
+        toInsert(val, root);
     }
+
+    public void toInsert(int val, BSTNode currentNode) {
+        if(currentNode.getVal() == val) {
+            return;
+        }
+        BSTNode leftNode = currentNode.getLeft();
+        BSTNode rightNode = currentNode.getRight();
+        if (val > leftNode.getVal() && val < rightNode.getVal()) {
+            currentNode.setLeft(new BSTNode(val));
+        }
+        if(val < currentNode.getVal() && val < leftNode.getVal()) {
+            toInsert(val, currentNode.getLeft());
+        }
+        if(val > currentNode.getVal() && val > rightNode.getVal()) {
+            toInsert(val, currentNode.getRight());
+        }
+    }
+
 
     /**
      * Determines if the current BST is
@@ -175,5 +194,11 @@ public class BST {
         System.out.println("\nInorder traversal of binary tree is");
         sol = tree.getInorder();
         printNodes(sol);
+
+        System.out.println("Hi");
+        System.out.println(tree.getInorder());
+        tree.insert(3);
+        System.out.println(tree.getInorder());
+        System.out.println("Hi");
     }
 }
