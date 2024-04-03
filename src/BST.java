@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -76,6 +77,14 @@ public class BST {
     public ArrayList<BSTNode> getInorder() {
         // TODO: Complete inorder traversal
         return null;
+    }
+
+    public ArrayList<BSTNode> toGetInOrder(BSTNode currentNode) {
+        ArrayList<BSTNode> nodes = new ArrayList<>();
+        if(currentNode == null) {
+            return nodes;
+        }
+        toGetInOrder()
     }
 
     /**
