@@ -76,15 +76,18 @@ public class BST {
      */
     public ArrayList<BSTNode> getInorder() {
         // TODO: Complete inorder traversal
-        return null;
+        ArrayList<BSTNode> nodes = new ArrayList<>();
+        return toGetInOrder(root, nodes);
     }
 
-    public ArrayList<BSTNode> toGetInOrder(BSTNode currentNode) {
-        ArrayList<BSTNode> nodes = new ArrayList<>();
+    public ArrayList<BSTNode> toGetInOrder(BSTNode currentNode, ArrayList<BSTNode> nodes) {
         if(currentNode == null) {
             return nodes;
         }
-        toGetInOrder()
+        toGetInOrder(currentNode.getLeft(), nodes);
+        nodes.add(currentNode);
+        toGetInOrder(currentNode.getRight(), nodes);
+        return nodes;
     }
 
     /**
@@ -92,7 +95,18 @@ public class BST {
      */
     public ArrayList<BSTNode> getPreorder() {
         // TODO: Complete preorder traversal
-        return null;
+        ArrayList<BSTNode> nodes = new ArrayList<>();
+        return toGetPreorder(root, nodes);
+    }
+
+    public ArrayList<BSTNode> toGetPreorder(BSTNode currentNode, ArrayList<BSTNode> nodes) {
+        if(currentNode == null) {
+            return nodes;
+        }
+        nodes.add(currentNode);
+        toGetPreorder(currentNode.getLeft(), nodes);
+        toGetPreorder(currentNode.getRight(), nodes);
+        return nodes;
     }
 
     /**
@@ -100,7 +114,18 @@ public class BST {
      */
     public ArrayList<BSTNode> getPostorder() {
         // TODO: Complete postorder traversal
-        return null;
+        ArrayList<BSTNode> nodes = new ArrayList<>();
+        return toGetPostorder(root, nodes);
+    }
+
+    public ArrayList<BSTNode> toGetPostorder(BSTNode currentNode, ArrayList<BSTNode> nodes) {
+        if(currentNode == null) {
+            return nodes;
+        }
+        toGetPostorder(currentNode.getLeft(), nodes);
+        toGetPostorder(currentNode.getRight(), nodes);
+        nodes.add(currentNode);
+        return nodes;
     }
 
     /**
