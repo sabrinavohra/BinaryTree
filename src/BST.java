@@ -48,7 +48,18 @@ public class BST {
      */
     public boolean search(int val) {
         // TODO: Complete the search function
+        if(searchNode(val, root)) {
+            return true;
+        }
         return false;
+    }
+
+    public boolean searchNode(int val, BSTNode currentNode) {
+        if (currentNode.getVal() == val) {
+            return true;
+        }
+        return searchNode(val, currentNode.getLeft());
+        return searchNode(val, currentNode.getRight());
     }
 
     /**
