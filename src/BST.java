@@ -55,11 +55,19 @@ public class BST {
     }
 
     public boolean searchNode(int val, BSTNode currentNode) {
+        if(currentNode == null) {
+            return false;
+        }
         if (currentNode.getVal() == val) {
             return true;
         }
-        return searchNode(val, currentNode.getLeft());
-        return searchNode(val, currentNode.getRight());
+        if(val < currentNode.getVal()) {
+            return searchNode(val, currentNode.getLeft());
+        }
+        if(val > currentNode.getVal()) {
+            return searchNode(val, currentNode.getRight());
+        }
+        return false;
     }
 
     /**
