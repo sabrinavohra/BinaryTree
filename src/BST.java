@@ -49,25 +49,36 @@ public class BST {
      */
     public boolean search(int val) {
         // TODO: Complete the search function
+        // Calls recursive method starting at the root and searching for the given value
         if(searchNode(val, root)) {
             return true;
         }
+        // Returns depending on recursive method
         return false;
     }
 
+    // Recursive method to search for a certain node
     public boolean searchNode(int val, BSTNode currentNode) {
+        // Base case
+        // Returns if the value hasn't been found
         if(currentNode == null) {
             return false;
         }
+        // Will return true if the current node being searched is equal to the value being looked for
         if (currentNode.getVal() == val) {
             return true;
         }
+        // Looks to the left of the current node being searched if the value is less than the value of the current node
         if(val < currentNode.getVal()) {
+            // Calls method again but on the node to the left of the current node being searched
             return searchNode(val, currentNode.getLeft());
         }
+        // Looks to the right of the current node being searched if the value is greater than the value of the current node
         if(val > currentNode.getVal()) {
+            // Calls method again but on the node to the right of the current node being searched
             return searchNode(val, currentNode.getRight());
         }
+        // Returns false if end of method is reached
         return false;
     }
 
