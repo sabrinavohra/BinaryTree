@@ -145,14 +145,14 @@ public class BST {
         }
         BSTNode leftNode = currentNode.getLeft();
         BSTNode rightNode = currentNode.getRight();
-        if (val > leftNode.getVal() && val < rightNode.getVal()) {
-            currentNode.setLeft(new BSTNode(val));
-        }
-        if(val < currentNode.getVal() && val < leftNode.getVal()) {
+        if(leftNode == null || val < leftNode.getVal()) {
             toInsert(val, currentNode.getLeft());
         }
-        if(val > currentNode.getVal() && val > rightNode.getVal()) {
+        if(rightNode == null || val > rightNode.getVal()) {
             toInsert(val, currentNode.getRight());
+        }
+        if (val > leftNode.getVal() && val < rightNode.getVal()) {
+            currentNode.setLeft(new BSTNode(val));
         }
     }
 
@@ -197,7 +197,7 @@ public class BST {
 
         System.out.println("Hi");
         System.out.println(tree.getInorder());
-        tree.insert(3);
+        tree.insert(5);
         System.out.println(tree.getInorder());
         System.out.println("Hi");
     }
