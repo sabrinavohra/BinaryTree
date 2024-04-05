@@ -151,19 +151,21 @@ public class BST {
     }
 
     public void toInsert(int val, BSTNode currentNode) {
-        if(currentNode.getVal() == val) {
-            return;
-        }
         BSTNode leftNode = currentNode.getLeft();
         BSTNode rightNode = currentNode.getRight();
-        if(leftNode == null || val < leftNode.getVal()) {
-            toInsert(val, currentNode.getLeft());
+        if(val > currentNode.getVal()) {
+            if(rightNode == null) {
+                currentNode.setRight(new BSTNode(val));
+                return;
+            }
+            toInsert(val, rightNode);
         }
-        if(rightNode == null || val > rightNode.getVal()) {
-            toInsert(val, currentNode.getRight());
-        }
-        if (val > leftNode.getVal() && val < rightNode.getVal()) {
-            currentNode.setLeft(new BSTNode(val));
+        if(val < currentNode.getVal()) {
+            if(leftNode == null) {
+                currentNode.setLeft(new BSTNode(val));
+                return;
+            }
+            toInsert(val, leftNode);
         }
     }
 
@@ -205,11 +207,5 @@ public class BST {
         System.out.println("\nInorder traversal of binary tree is");
         sol = tree.getInorder();
         printNodes(sol);
-
-        System.out.println("Hi");
-        System.out.println(tree.getInorder());
-        tree.insert(5);
-        System.out.println(tree.getInorder());
-        System.out.println("Hi");
     }
 }
