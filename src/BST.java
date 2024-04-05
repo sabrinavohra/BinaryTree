@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 /**
  * An Integer Binary Search Tree
- * @author: Your Name Here
- * @version: Date
+ * @author: Sabrina Vohra
+ * @version: 4/4/24
  */
 
 public class BST {
@@ -48,7 +48,6 @@ public class BST {
      * @return true if val is in the tree, false otherwise
      */
     public boolean search(int val) {
-        // TODO: Complete the search function
         // Calls recursive method starting at the root and searching for the given value
         if(searchNode(val, root)) {
             return true;
@@ -86,18 +85,25 @@ public class BST {
      * @return ArrayList of BSTNodes in inorder
      */
     public ArrayList<BSTNode> getInorder() {
-        // TODO: Complete inorder traversal
+        // Creates ArrayList to add into during recursive method
         ArrayList<BSTNode> nodes = new ArrayList<>();
+        // Calls recursive method to get nodes in order
         return toGetInOrder(root, nodes);
     }
 
+    // Recursive method to get nodes in order
     public ArrayList<BSTNode> toGetInOrder(BSTNode currentNode, ArrayList<BSTNode> nodes) {
+        // Base case for if the node currently being searched is null / if the list is complete
         if(currentNode == null) {
             return nodes;
         }
+        // Calls recursive method on lefter nodes
         toGetInOrder(currentNode.getLeft(), nodes);
+        // Adds node to ArrayList
         nodes.add(currentNode);
+        // Calls recursive method on righter nodes
         toGetInOrder(currentNode.getRight(), nodes);
+        // Returns ArrayList of nodes after nodes have been added
         return nodes;
     }
 
@@ -105,18 +111,25 @@ public class BST {
      * @return ArrayList of BSTNodes in preorder
      */
     public ArrayList<BSTNode> getPreorder() {
-        // TODO: Complete preorder traversal
+        // Creates ArrayList to store nodes while in recursive method
         ArrayList<BSTNode> nodes = new ArrayList<>();
+        // Calls recursive method to put nodes in preorder
         return toGetPreorder(root, nodes);
     }
 
+    // Recursive method to put nodes in preorder order
     public ArrayList<BSTNode> toGetPreorder(BSTNode currentNode, ArrayList<BSTNode> nodes) {
+        // Returns ArrayList if the current node is not filled
         if(currentNode == null) {
             return nodes;
         }
+        // Adds current node to the ArrayList before adding rest of nodes (hence: PREorder)
         nodes.add(currentNode);
+        // Calls method on lefter nodes
         toGetPreorder(currentNode.getLeft(), nodes);
+        // Calls method on righter nodes
         toGetPreorder(currentNode.getRight(), nodes);
+        // Returns ArrayList of nodes after calling methods
         return nodes;
     }
 
@@ -124,18 +137,25 @@ public class BST {
      * @return ArrayList of BSTNodes in postorder
      */
     public ArrayList<BSTNode> getPostorder() {
-        // TODO: Complete postorder traversal
+        // Creates ArrayList to store nodes while in recursive method
         ArrayList<BSTNode> nodes = new ArrayList<>();
+        // Calls recursive method to put nodes in postorder
         return toGetPostorder(root, nodes);
     }
 
+    // Recursive method to put nodes in postorder
     public ArrayList<BSTNode> toGetPostorder(BSTNode currentNode, ArrayList<BSTNode> nodes) {
+        // Returns ArrayList of nodes if the current node is null
         if(currentNode == null) {
             return nodes;
         }
+        // Calls recursive method for lefter nodes
         toGetPostorder(currentNode.getLeft(), nodes);
+        // Calls recursive method for righter nodes
         toGetPostorder(currentNode.getRight(), nodes);
+        // Adds node to ArrayList after calling recursive method (hence: POSTorder)
         nodes.add(currentNode);
+        // Returns ArrayList of nodes after calling recursive methods and adding to ArrayList
         return nodes;
     }
 
@@ -146,25 +166,37 @@ public class BST {
      * @param val The value ot insert
      */
     public void insert(int val) {
-        // TODO: Complete insert
+        // Calls recursive method to insert values into the tree
         toInsert(val, root);
     }
 
+    // Recursive method to insert values into the tree
     public void toInsert(int val, BSTNode currentNode) {
+        // Variables for left and right nodes in relation to the current node
         BSTNode leftNode = currentNode.getLeft();
         BSTNode rightNode = currentNode.getRight();
+        // Checks if value is greater than the value of the current node
         if(val > currentNode.getVal()) {
+            // Checks to make sure the node to the right of the current node is not valid (so it can add a new node)
             if(rightNode == null) {
+                // If it is null, it sets a node to the right to be the value
                 currentNode.setRight(new BSTNode(val));
+                // Returns and exits the method
                 return;
             }
+            // If the node is not null, calls the recursive method with righter node
             toInsert(val, rightNode);
         }
+        // Checks if value is less than the value of the current node
         if(val < currentNode.getVal()) {
+            // Checks to make sure the node to the left of the current node is not valid (so it can add a new node)
             if(leftNode == null) {
+                // If it is null, it sets a node to the left to be the value
                 currentNode.setLeft(new BSTNode(val));
+                // Returns and exits the method
                 return;
             }
+            // If the node is not null, calls the recursive method with lefter node
             toInsert(val, leftNode);
         }
     }
@@ -176,7 +208,6 @@ public class BST {
      * @return true if valid false otherwise
      */
     public boolean isValidBST() {
-        // TODO: Optional Challenge!
         return false;
     }
 
